@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>CloudDrive - Secure File Storage & Management</title>
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        .slide-up {
+            animation: slideInUp 0.8s ease-out forwards;
+        }
+        .gradient-bg {
+            background: linear-gradient(-45deg, #1e1b4b, #312e81, #1e3a8a, #1e1b4b);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+        .file-icon {
+            font-size: 3rem;
+        }
+        .btn-glow {
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.5), 0 0 60px rgba(99, 102, 241, 0.2);
+        }
+        .btn-glow:hover {
+            box-shadow: 0 0 40px rgba(99, 102, 241, 0.7), 0 0 80px rgba(99, 102, 241, 0.3);
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen text-white flex items-center justify-center p-4"></body>
+    <!-- Hero Section - Centered Single Column -->
+    <div class="w-full max-w-2xl">
+        <!-- Content Section -->
+        <div class="text-center space-y-6 mb-12 slide-up">
+            <h1 class="text-5xl md:text-7xl font-bold tracking-tight leading-tight">
+                Secure Cloud
+                <span class="block bg-gradient-to-r from-indigo-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">Storage</span>
+            </h1>
+            
+            <p class="text-lg md:text-xl text-slate-300 leading-relaxed max-w-xl mx-auto">
+                CloudDrive is a modern, secure file management system built with MERN stack. Upload, store, and access your files with enterprise-grade security.
+        
+
+        <!-- Upload Card -->
+        <div class="slide-up" style="animation-delay: 0.2s;">
+            <div class="relative">
+                <div class="absolute inset-0 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-3xl blur-3xl opacity-25"></div>
+                <div class="relative bg-slate-800/50 backdrop-blur-xl border border-white/15 rounded-3xl p-10 shadow-2xl">
+                    <div class="text-center space-y-6">
+                        <div class="float-animation">
+                            <i class="fas fa-cloud-arrow-up file-icon text-indigo-400"></i>
+                        </div>
+                        
+                        <div>
+                            <h2 class="text-3xl font-bold mb-2">Upload Your Files</h2>
+                            <p class="text-slate-400">Drag & drop or click to select</p>
+                        </div>
+
+                        <form action="http://localhost:5541/api/file/upload" method="post" enctype="multipart/form-data" class="space-y-2">
+                            <div class="relative">
+                                <input type="file" name="file" id="fileInput" class="hidden" onchange="updateFileName(this)">
+                                <label for="fileInput" class="block px-3 py-3 border-2 border-dashed border-indigo-400/50 rounded-2xl cursor-pointer hover:border-indigo-400 hover:bg-indigo-400/5 transition-all duration-200 group">
+                                    <div class="flex items-center justify-center gap-2">
+                                        <i class="fas fa-folder-open text-indigo-400 group-hover:scale-110 transition"></i>
+                                        <span id="fileName" class="text-slate-300">Click or drag files here</span>
+                                    </div>
+                                </label>
+                            </div>
+                            <button type="submit" class="w-full py-4 px-6 bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500 text-white font-bold text-lg rounded-2xl shadow-lg transition-all duration-200 transform hover:scale-[1.02] active:scale-95 btn-glow flex items-center justify-center gap-2">
+                                <i class="fas fa-arrow-up"></i>
+                                Upload File Now
+                            </button>
+                        </form>
+
+                        <p class="text-xs text-slate-400">✓ Secure  ✓ Fast  ✓ Reliable</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updateFileName(input) {
+            const fileName = document.getElementById('fileName');
+            if (input.files && input.files[0]) {
+                fileName.textContent = input.files[0].name;
+            }
+        }
+    </script>
+</body>
+</html>
